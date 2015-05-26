@@ -11,8 +11,8 @@ The Canonical Verifier expects all XML Schema's to be present in a single direct
 Devillers.CanonicalVerifier.exe D:/directory-with-XSD/
 ```
 
-# Sample out
-Below is 
+# Sample output
+The Canonical Verifier writes any errors to the standard output stream. The verbosity can be increased to provide more insight into the validation process.
 ```
 INFO START: Started Devillers.CanonicalVerifier for directory: D:\GIT\CDM\
 INFO Customer.v1.xsd: Started file-level validation
