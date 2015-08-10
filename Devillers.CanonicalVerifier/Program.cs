@@ -109,7 +109,7 @@ namespace Devillers.CanonicalVerifier
 
                         if (element.SchemaTypeName.Namespace == XmlSchema.Namespace)
                         {
-                            if (!new[] {"string", "boolean", "int", "double", "decimal", "date", "dateTime", "base64Binary"}.Contains(element.SchemaTypeName.Name))
+                            if (!new[] {"string", "boolean", "int", "double", "decimal", "long", "date", "dateTime", "base64Binary"}.Contains(element.SchemaTypeName.Name))
                             {
                                 Error(filename, element, string.Format("Primitive type '{0}' is not supported", element.SchemaTypeName.Name));
                             }
@@ -119,6 +119,38 @@ namespace Devillers.CanonicalVerifier
                             Error(filename, element, "An element must be either a primitive type or a known schema type. Unknown namespace: " + element.SchemaTypeName.Namespace);
                         }
 
+                        if (element.Block != XmlSchemaDerivationMethod.None)
+                        {
+                            Error(filename, element, "An element should not have a block specifier");
+                        }
+                        if (element.DefaultValue != null)
+                        {
+                            Error(filename, element, "An element should not have a default value");
+                        }
+                        if (element.Final != XmlSchemaDerivationMethod.None)
+                        {
+                            Error(filename, element, "An element should not have a final specifier");
+                        }
+                        if (element.FixedValue != null)
+                        {
+                            Error(filename, element, "An element should not have a fixed value");
+                        }
+                        if (element.Form != XmlSchemaForm.None)
+                        {
+                            Error(filename, element, "An element should have no form specifier");
+                        }
+                        if (element.Id != null)
+                        {
+                            Error(filename, element, "An element should have no id value");
+                        }
+                        if (!element.RefName.IsEmpty)
+                        {
+                            Error(filename, element, "An element should have no ref value");
+                        }
+                        if (!element.SubstitutionGroup.IsEmpty)
+                        {
+                            Error(filename, element, "An element should have an empty substitution group");
+                        }
                         if (element.MinOccurs == 0 && !element.IsNillable)
                         {
                             Error(filename, element, "An element with minOccurs=0 should have nillable=true");
@@ -139,6 +171,19 @@ namespace Devillers.CanonicalVerifier
                     }
                     foreach (var complexType in All<XmlSchemaComplexType>(xsd.Items))
                     {
+                        if (complexType.Block != XmlSchemaDerivationMethod.None)
+                        {
+                            Error(filename, complexType, "A complex type should not have a block specifier");
+                        }
+                        if (complexType.Final != XmlSchemaDerivationMethod.None)
+                        {
+                            Error(filename, complexType, "A complex type should not have a final specifier");
+                        }
+                        if (complexType.IsMixed)
+                        {
+                            Error(filename, complexType, "A complex type should not be mixed");
+                        }
+
                         if (complexType.IsAbstract && !complexType.Name.EndsWith("Base"))
                         {
                             Error(filename, complexType, "Abstract types should have a name ending with 'Base'");
@@ -216,6 +261,21 @@ namespace Devillers.CanonicalVerifier
                         foreach (var item1 in All<T>(xss.Items))
                         {
                             yield return item1;
+                        }
+                    }
+                    if (ct.ContentModel != null)
+                    {
+                        var xscce = ct.ContentModel.Content as XmlSchemaComplexContentExtension;
+                        if (xscce != null)
+                        {
+                            var xss2 = xscce.Particle as XmlSchemaSequence;
+                            if (xss2 != null)
+                            {
+                                foreach (var item1 in All<T>(xss2.Items))
+                                {
+                                    yield return item1;
+                                }
+                            }
                         }
                     }
                 }
