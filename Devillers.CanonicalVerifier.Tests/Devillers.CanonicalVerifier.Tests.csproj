@@ -57,6 +57,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\TestSet3\App.config" />
+    <None Include="Data\TestSet3\Foo.v1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\TestSet2\App.config" />
+    <None Include="Data\TestSet2\Foo.v1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Data\TestSet1\App.config" />
     <None Include="Data\TestSet1\Foo.v1.xsd">
       <SubType>Designer</SubType>

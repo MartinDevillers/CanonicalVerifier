@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by End User (free.org) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:devillers:cdm:foo:v1" targetNamespace="urn:devillers:cdm:foo:v1" elementFormDefault="qualified">
+	<xs:element name="Test" type="xs:string"/>
+	<xs:complexType name="PrimitiveTypes">
+		<xs:sequence>
+			<xs:element name="String" type="xs:string" block="extension" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Boolean" type="xs:boolean" form="unqualified" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Integer" type="xs:int" fixed="32" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Double" type="xs:double" id="test" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="NotherDouble" type="xs:double" default="20" minOccurs="1" maxOccurs="1"/>
+			<xs:element ref="Test" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Long" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Date" type="xs:date" nillable="true" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DateTime" type="xs:dateTime" minOccurs="1" maxOccurs="2"/>
+			<xs:element name="binary" type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="PositiveInteger" type="xs:positiveInteger" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DomainType">
+		<xs:sequence>
+			<xs:element name="Reference" type="PrimitiveTypes" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Cardinality">
+		<xs:sequence>
+			<xs:element name="Mandatory" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Optional" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Enumeration">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FirstValue"/>
+			<xs:enumeration value="SecondValue"/>
+			<xs:enumeration value="ThirdValue"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DomainTypeCollection">
+		<xs:sequence>
+			<xs:element name="DomainType" type="DomainType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
