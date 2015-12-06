@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\binaries\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -46,8 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="CanonicalSchema.cs" />
+    <Compile Include="CanonicalSchemaSet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\XmlSchemaElementValidator.cs" />
+    <Compile Include="Rules\XmlSchemaMessageTypeValidator.cs" />
+    <Compile Include="Rules\XmlSchemaComplexTypeValidator.cs" />
+    <Compile Include="Rules\XmlSchemaObjectCollectionPropertyRule.cs" />
+    <Compile Include="Rules\CanonicalSchemaSetValidator.cs" />
+    <Compile Include="Rules\CanonicalSchemaValidator.cs" />
+    <Compile Include="Rules\XmlSchemaDesignPatternValidator.cs" />
+    <Compile Include="Rules\XmlSchemaDependencyValidator.cs" />
+    <Compile Include="Rules\XmlSchemaRootNamespaceValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
