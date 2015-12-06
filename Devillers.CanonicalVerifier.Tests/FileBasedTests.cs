@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Devillers.CanonicalVerifier.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

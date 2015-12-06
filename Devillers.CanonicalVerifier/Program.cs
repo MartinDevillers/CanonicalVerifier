@@ -1,15 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Schema;
 using Devillers.CanonicalVerifier.Rules;
 
 namespace Devillers.CanonicalVerifier
