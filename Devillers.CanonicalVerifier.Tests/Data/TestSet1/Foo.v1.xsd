@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:devillers:cdm:foo:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:devillers:cdm:foo:v1" elementFormDefault="qualified">
+	<xs:complexType name="PrimitiveTypes">
+		<xs:sequence>
+			<xs:element name="String" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Boolean" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Integer" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Double" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Decimal" type="xs:decimal" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Long" type="xs:long" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Date" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="DateTime" type="xs:dateTime" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Binary" type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DomainType">
+		<xs:sequence>
+			<xs:element name="Reference" type="PrimitiveTypes" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Cardinality">
+		<xs:sequence>
+			<xs:element name="Mandatory" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Optional" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Enumeration">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FirstValue"/>
+			<xs:enumeration value="SecondValue"/>
+			<xs:enumeration value="ThirdValue"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="DomainTypeCollection">
+		<xs:sequence>
+			<xs:element name="DomainType" type="DomainType" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
