@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/MartinDevillers/CanonicalVerifier.svg)](https://travis-ci.org/MartinDevillers/CanonicalVerifier)
+[![Build status](https://ci.appveyor.com/api/projects/status/voj8ownp1wvo1s37?svg=true)](https://ci.appveyor.com/project/MartinDevillers/canonicalverifier)
+
 # Canonical Verifier
 Command line-tool that verifies XSD-based Canonical Data Models. The tool can be used as a:
 * Manual verification step by an architect or information analyst to check the consistincy of the model

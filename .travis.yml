@@ -1,5 +1,5 @@
 language: csharp
 solution: Devillers.CanonicalVerifier.sln
 script:
-  - xbuild Devillers.CanonicalVerifier.sln
+  - xbuild ./Devillers.CanonicalVerifier/Devillers.CanonicalVerifier.csproj
 #  - mono ../lib/xunit/xunit.console.clr4.x86.exe Devillers.CanonicalVerifier.Tests/bin/Debug/Devillers.CanonicalVerifier.Tests.dll
