@@ -45,7 +45,37 @@ namespace Devillers.CanonicalVerifier.Tests
 
             var result = validator.Validate(schemaSet);
 
-            var expectedErrors = new[] { "EL001", "EL002", "EL003", "EL004", /*"EL005",*/ "EL006", "EL007", "EL008", "EL009", "EL010", "EL011", "EL012", "EL013" };
+            var expectedErrors = new[] { "EL001", "EL002", "EL003", "EL004", /*"EL005",*/ "EL006", "EL007", "EL008", "EL009", "EL010", "EL011", "EL012", "EL013", "DP002" };
+
+            CollectionAssert.AreEquivalent(expectedErrors, result.Errors.Select(x => x.ErrorCode).ToList());
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestSet4", "TestSet4")]
+        public void Given_TestSet4_Should_TriggerCanonicalSchemaValidator()
+        {
+            var validator = new CanonicalSchemaSetValidator();
+
+            var schemaSet = new CanonicalSchemaSet("TestSet4");
+
+            var result = validator.Validate(schemaSet);
+
+            var expectedErrors = new[] { "XML001", "XML002", "XSD001" };
+
+            CollectionAssert.AreEquivalent(expectedErrors, result.Errors.Select(x => x.ErrorCode).ToList());
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestSet5", "TestSet5")]
+        public void Given_TestSet5_Should_TriggerXmlSchemaDesignPatternValidator()
+        {
+            var validator = new CanonicalSchemaSetValidator();
+
+            var schemaSet = new CanonicalSchemaSet("TestSet5");
+
+            var result = validator.Validate(schemaSet);
+
+            var expectedErrors = new[] { "DP001", "DP002" };
 
             CollectionAssert.AreEquivalent(expectedErrors, result.Errors.Select(x => x.ErrorCode).ToList());
         }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema targetNamespace="urn:devillers:cdm:foo:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:devillers:cdm:foo:v1" elementFormDefault="qualified">
-	<!--                  CT005           CT001               CT002               CT003     -->
-	<xs:complexType name="primitiveTypes" block="restriction" final="restriction" mixed="true">
+	<xs:complexType name="PrimitiveTypes">
 		<xs:sequence>
 			<xs:element name="String" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="Boolean" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
@@ -16,14 +15,14 @@
 	</xs:complexType>
 	<xs:complexType name="DomainType">
 		<xs:sequence>
-			<xs:element name="Reference" type="primitiveTypes" minOccurs="1" maxOccurs="1"/>
+			<!--                               XSD002                                         -->
+			<xs:element name="Reference" type="ThisIsNotAValidType" minOccurs="1" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
-	<!--                               CT004        -->
-	<xs:complexType name="Cardinality" abstract="true">
+	<xs:complexType name="Cardinality">
 		<xs:sequence>
 			<xs:element name="Mandatory" type="xs:int" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="Optional" type="xs:string" nillable="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Optional" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:simpleType name="Enumeration">
@@ -35,7 +34,7 @@
 	</xs:simpleType>
 	<xs:complexType name="DomainTypeCollection">
 		<xs:sequence>
-			<xs:element name="DomainType" type="DomainType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DomainType" type="DomainType" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

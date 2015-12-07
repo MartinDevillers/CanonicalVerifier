@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by End User (free.org) -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:devillers:cdm:foo:v1" targetNamespace="urn:devillers:cdm:foo:v1" elementFormDefault="qualified">
+<xs:schema targetNamespace="urn:devillers:cdm:foo:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:devillers:cdm:foo:v1" elementFormDefault="qualified">
+    <!-- Required for EL009, but causes DP002 and EL002 -->
 	<xs:element name="Test" type="xs:string"/>
 	<xs:complexType name="PrimitiveTypes">
 		<xs:sequence>
+		    <!--                                       EL003                                          -->
 			<xs:element name="String" type="xs:string" block="extension" minOccurs="1" maxOccurs="1"/>
+			<!--                                         EL007                                        -->
 			<xs:element name="Boolean" type="xs:boolean" form="unqualified" minOccurs="1" maxOccurs="1"/>
+			<!--                                     EL006                                            -->
 			<xs:element name="Integer" type="xs:int" fixed="32" minOccurs="1" maxOccurs="1"/>
+			<!--                                       EL008                                          -->
 			<xs:element name="Double" type="xs:double" id="test" minOccurs="1" maxOccurs="1"/>
+			<!--                                             EL004                                    -->
 			<xs:element name="NotherDouble" type="xs:double" default="20" minOccurs="1" maxOccurs="1"/>
+			<!--        EL009                                                                         -->
 			<xs:element ref="Test" minOccurs="1" maxOccurs="1"/>
+			<!--                                   EL010                                              -->
 			<xs:element name="Long" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<!--                                   EL011                                              -->
 			<xs:element name="Date" type="xs:date" nillable="true" minOccurs="1" maxOccurs="1"/>
+			<!--                                   EL012                                              -->
 			<xs:element name="DateTime" type="xs:dateTime" minOccurs="1" maxOccurs="2"/>
+			<!--              EL013                                                                   -->
 			<xs:element name="binary" type="xs:base64Binary" minOccurs="1" maxOccurs="1"/>
+			<!--                                     EL001                                            -->
 			<xs:element name="PositiveInteger" type="xs:positiveInteger" minOccurs="1" maxOccurs="1"/>
+			<!--                                                                                      -->
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="DomainType">

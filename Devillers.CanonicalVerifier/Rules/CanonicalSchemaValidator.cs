@@ -22,6 +22,7 @@ namespace Devillers.CanonicalVerifier.Rules
 
             RuleFor(x => x.XmlSchema)
                 .NotEmpty()
+                .WithErrorCode("XML002");
                 ;
 
             When(XmlSchemaPresent, () =>

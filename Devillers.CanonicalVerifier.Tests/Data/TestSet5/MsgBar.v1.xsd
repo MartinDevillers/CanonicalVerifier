@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:devillers:cdm:messages:bar:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:devillers:cdm:messages:bar:v1" xmlns:mbspos="urn:devillers:cdm:messages:bar:v1" xmlns:foo="urn:devillers:cdm:foo:v1" elementFormDefault="qualified">
+	<xs:import namespace="urn:devillers:cdm:foo:v1" schemaLocation="Foo.v1.xsd"/>
+	<!-- DP001 <xs:element name="GetFooRequest" type="GetFooRequest"/>-->
+	<xs:complexType name="GetFooRequest">
+		<xs:complexContent>
+			<xs:extension base="RequestBase">
+				<xs:sequence>
+					<xs:element name="PrimitiveTypes" type="foo:PrimitiveTypes" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GetFooResponse" type="GetFooResponse"/>
+	<xs:complexType name="GetFooResponse">
+		<xs:complexContent>
+			<xs:extension base="ResponseBase">
+				<xs:sequence>
+					<xs:element name="DomainType" type="foo:DomainType" minOccurs="0" maxOccurs="1" nillable="true"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ResponseBase" type="ResponseBase"/>
+	<xs:complexType name="ResponseBase" abstract="true">
+		<xs:sequence>
+			<xs:element name="GenericResponseParameter" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RequestBase" type="RequestBase"/>
+	<xs:complexType name="RequestBase" abstract="true">
+		<xs:sequence>
+			<xs:element name="GenericRequestParameter" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true">
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

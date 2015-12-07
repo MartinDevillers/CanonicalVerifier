@@ -18,7 +18,7 @@ namespace Devillers.CanonicalVerifier.Rules
             else
             {
                 RuleFor(x => x.Items)
-                    .Must(x => x.OfType<XmlSchemaObject>().Any(y => !(y is XmlSchemaComplexType)))
+                    .Must(x => x.OfType<XmlSchemaObject>().All(y => y is XmlSchemaType))
                     .WithMessage("Schema should only have complex types at the top level (*NO* Garden of Eden style).")
                     .WithErrorCode("DP002");
             }

@@ -17,6 +17,7 @@ namespace Devillers.CanonicalVerifier
                 .ToList();
 
             XmlSchemaValidationErrors = Schemas
+                .Where(x => x.XmlSchema != null)
                 .Select(x => x.XmlSchema)
                 .Aggregate(new XmlSchemaSet(), AddToSet, CompileSetToErrors)
                 .ToList();
